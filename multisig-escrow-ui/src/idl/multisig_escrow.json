@@ -1,0 +1,637 @@
+{
+  "address": "HQwzh6fp5GmYvKyy9j9nNXBJWtZnkcNQqjbqaSAGPCnG",
+  "metadata": {
+    "name": "multisig_escrow",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "cancel",
+      "docs": [
+        "Cancel the escrow (only by depositor)"
+      ],
+      "discriminator": [
+        232,
+        219,
+        223,
+        41,
+        219,
+        236,
+        220,
+        190
+      ],
+      "accounts": [
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.recipient",
+                "account": "EscrowAccount"
+              },
+              {
+                "kind": "account",
+                "path": "escrow.depositor",
+                "account": "EscrowAccount"
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "depositor_token_account",
+          "writable": true
+        },
+        {
+          "name": "depositor",
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "execute",
+      "docs": [
+        "Execute the escrow when enough signatures are collected"
+      ],
+      "discriminator": [
+        130,
+        221,
+        242,
+        154,
+        13,
+        193,
+        189,
+        29
+      ],
+      "accounts": [
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow.recipient",
+                "account": "EscrowAccount"
+              },
+              {
+                "kind": "account",
+                "path": "escrow.depositor",
+                "account": "EscrowAccount"
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "recipient_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "docs": [
+        "Initialize a new multisig escrow"
+      ],
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "recipient"
+              },
+              {
+                "kind": "account",
+                "path": "depositor"
+              }
+            ]
+          }
+        },
+        {
+          "name": "depositor",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "depositor_token_account",
+          "writable": true
+        },
+        {
+          "name": "escrow_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "escrow"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "recipient",
+          "type": "pubkey"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "required_signatures",
+          "type": "u8"
+        },
+        {
+          "name": "signers",
+          "type": {
+            "vec": "pubkey"
+          }
+        }
+      ]
+    },
+    {
+      "name": "sign",
+      "docs": [
+        "Sign the escrow transaction"
+      ],
+      "discriminator": [
+        5,
+        221,
+        155,
+        46,
+        237,
+        91,
+        28,
+        236
+      ],
+      "accounts": [
+        {
+          "name": "escrow",
+          "writable": true
+        },
+        {
+          "name": "signer",
+          "signer": true
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "EscrowAccount",
+      "discriminator": [
+        36,
+        69,
+        48,
+        18,
+        128,
+        225,
+        125,
+        135
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "EscrowCancelled",
+      "discriminator": [
+        98,
+        241,
+        195,
+        122,
+        213,
+        0,
+        162,
+        161
+      ]
+    },
+    {
+      "name": "EscrowExecuted",
+      "discriminator": [
+        253,
+        141,
+        193,
+        216,
+        68,
+        1,
+        193,
+        37
+      ]
+    },
+    {
+      "name": "EscrowInitialized",
+      "discriminator": [
+        222,
+        186,
+        157,
+        47,
+        145,
+        142,
+        176,
+        248
+      ]
+    },
+    {
+      "name": "EscrowSigned",
+      "discriminator": [
+        199,
+        30,
+        227,
+        39,
+        86,
+        197,
+        126,
+        12
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidRequiredSignatures",
+      "msg": "The number of required signatures exceeds the number of signers"
+    },
+    {
+      "code": 6001,
+      "name": "UnauthorizedSigner",
+      "msg": "The signer is not authorized for this escrow"
+    },
+    {
+      "code": 6002,
+      "name": "AlreadySigned",
+      "msg": "This signer has already signed the escrow"
+    },
+    {
+      "code": 6003,
+      "name": "AlreadyExecuted",
+      "msg": "The escrow has already been executed"
+    },
+    {
+      "code": 6004,
+      "name": "EscrowCancelled",
+      "msg": "The escrow has been cancelled"
+    },
+    {
+      "code": 6005,
+      "name": "InsufficientSignatures",
+      "msg": "Insufficient signatures to execute the escrow"
+    },
+    {
+      "code": 6006,
+      "name": "NoSigners",
+      "msg": "Cannot have zero signers"
+    },
+    {
+      "code": 6007,
+      "name": "TooManySigners",
+      "msg": "Too many signers provided"
+    },
+    {
+      "code": 6008,
+      "name": "ZeroRequiredSignatures",
+      "msg": "Required signatures must be at least 1"
+    },
+    {
+      "code": 6009,
+      "name": "CannotExecute",
+      "msg": "Cannot execute escrow before all required signatures are collected"
+    },
+    {
+      "code": 6010,
+      "name": "UnauthorizedCancel",
+      "msg": "Only the depositor can cancel an unexecuted escrow"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidMint",
+      "msg": "Invalid token mint"
+    },
+    {
+      "code": 6012,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount"
+    }
+  ],
+  "types": [
+    {
+      "name": "EscrowAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "depositor",
+            "docs": [
+              "The depositor who created the escrow"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "recipient",
+            "docs": [
+              "The recipient who will receive the tokens"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "docs": [
+              "The token mint being escrowed"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "docs": [
+              "The amount of tokens in escrow"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "required_signatures",
+            "docs": [
+              "Number of signatures required to execute"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "current_signatures",
+            "docs": [
+              "Current number of signatures collected"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "signers",
+            "docs": [
+              "List of authorized signers"
+            ],
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "signatures",
+            "docs": [
+              "List of addresses that have already signed"
+            ],
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "created_at",
+            "docs": [
+              "Timestamp when escrow was created"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "is_executed",
+            "docs": [
+              "Whether the escrow has been executed"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "is_cancelled",
+            "docs": [
+              "Whether the escrow has been cancelled"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "Bump seed for PDA"
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EscrowCancelled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "escrow",
+            "type": "pubkey"
+          },
+          {
+            "name": "depositor",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EscrowExecuted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "escrow",
+            "type": "pubkey"
+          },
+          {
+            "name": "recipient",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EscrowInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "escrow",
+            "type": "pubkey"
+          },
+          {
+            "name": "depositor",
+            "type": "pubkey"
+          },
+          {
+            "name": "recipient",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "required_signatures",
+            "type": "u8"
+          },
+          {
+            "name": "signers",
+            "type": {
+              "vec": "pubkey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "EscrowSigned",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "escrow",
+            "type": "pubkey"
+          },
+          {
+            "name": "signer",
+            "type": "pubkey"
+          },
+          {
+            "name": "current_signatures",
+            "type": "u8"
+          },
+          {
+            "name": "required_signatures",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}

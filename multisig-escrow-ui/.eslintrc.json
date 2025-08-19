@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "globals": {
+    "BigInt": "readonly",
+    "Buffer": "readonly"
+  },
+  "rules": {
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "no-undef": "error"
+  }
+}
