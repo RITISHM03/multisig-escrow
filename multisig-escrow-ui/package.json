@@ -21,6 +21,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bn.js": "^5.2.2",
     "buffer": "^6.0.3",
+    "stream-browserify": "^3.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
@@ -31,6 +32,9 @@
     "build": "cross-env GENERATE_SOURCEMAP=false react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
+  },
+  "engines": {
+    "node": ">=18"
   },
   
   "eslintConfig": {
@@ -53,6 +57,7 @@
   },
   "devDependencies": {
     "crypto-browserify": "^3.12.1",
-    "react-app-rewired": "^2.2.1"
+    "react-app-rewired": "^2.2.1",
+    "cross-env": "^7.0.3"
   }
 }
