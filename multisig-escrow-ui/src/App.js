@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Container, Typography, Box, Grid, Paper } from '@mui/material';
+import { Container, Typography, Grid, Paper } from '@mui/material';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletConnection } from './components/WalletConnection';
 import { EscrowManager } from './components/EscrowManager';

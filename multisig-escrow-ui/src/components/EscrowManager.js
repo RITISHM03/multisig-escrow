@@ -5,7 +5,7 @@ import {
   Box, Grid, Alert, LinearProgress, Chip, Dialog, DialogTitle,
   DialogContent, DialogActions, Tab, Tabs, Paper, Divider
 } from '@mui/material';
-import { PublicKey, SystemProgram, SYSVAR_RENT_PUBKEY } from '@solana/web3.js';
+import { PublicKey } from '@solana/web3.js';
 import bs58 from 'bs58';
 import { BorshAccountsCoder } from '@coral-xyz/anchor';
 import { TOKEN_PROGRAM_ID, getAssociatedTokenAddress } from '@solana/spl-token';
@@ -311,7 +311,7 @@ const validateFormData = useCallback(() => {
         setError(`Failed to fetch escrows: ${err.message}`);
       }
     }
-  }, [publicKey, getWalletProgram]);
+  }, [publicKey, connection]);
 
  // BULLETPROOF: Create new escrow function with robust parameter handling
 const createEscrow = async () => {
